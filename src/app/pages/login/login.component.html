@@ -1,0 +1,41 @@
+<div class="main-div">
+  <form [formGroup]="loginForm" (ngSubmit)="submitForm()">
+    <div class="second-div">
+      <h2 class="heading">Login To Continue</h2>
+      <div class="flex flex-col gap-4 mt-7">
+        <div class="flex flex-col gap-1">
+          <input
+            type="text"
+            class="input-field"
+            formControlName="emailId"
+            [placeholder]="Constant.PLACEHOLDER_MESSAGE.USERNAME"
+          />
+          <span class="text-sm text-red-500" *ngIf="loginForm.get('emailId')?.errors && loginForm.get('emailId')?.touched"
+            >{{ Constant.VALIDATION_MESSAGE.REQUIRED }} *</span
+          >
+        </div>
+        <div>
+          <input
+            type="password"
+            class="input-field"
+            formControlName="password"
+            [placeholder]="Constant.PLACEHOLDER_MESSAGE.PASSWORD"
+          />
+          <span class="text-sm text-red-500" *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched"
+            >{{ Constant.VALIDATION_MESSAGE.REQUIRED }} *</span
+          >
+        </div>
+      </div>
+      <span class="support-div">
+        <a href="#">Forgot Password? - Support</a>
+      </span>
+      <div class="text-center flex flex-col mt-4 gap-2">
+        <button class="login-btn">Login</button>
+        <span class="text-gray-300">
+          Don't have an account?
+          <a href="#" class="signup-link">Sign up</a>
+        </span>
+      </div>
+    </div>
+  </form>
+</div>
