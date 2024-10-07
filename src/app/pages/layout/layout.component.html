@@ -1,1 +1,57 @@
-<p>layout works!</p>
+<div class="main-container flex h-screen">
+  <!-- Sidebar (20% of the screen) -->
+  <div class="sidebar flex flex-col justify-between w-1/5 h-full bg-purple-600 p-0">
+    <!-- Sidebar Header -->
+    <h2 class="mt-5 text-center text-xl font-serif tracking-widest font-semibold text-white">TICKETS</h2>
+    
+    <!-- Sidebar Links -->
+    <ul class="mt-5 flex flex-col gap-7 p-5">
+      <li>
+        <a routerLink="/dashboard" class="flex items-center space-x-2 text-white">
+          <i class="fa-solid fa-house"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
+      <li *ngIf="userData.role === 'Super Admin'">
+        <a routerLink="/employee" class="flex items-center space-x-2 text-white">
+          <i class="fa-solid fa-user"></i>
+          <span>Employee</span>
+        </a>
+      </li>
+      <li *ngIf="userData.role === 'Super Admin'">
+        <a routerLink="/department" class="flex items-center space-x-2 text-white">
+          <i class="fa-solid fa-users"></i>
+          <span>Department</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/ticket" class="flex items-center space-x-2 text-white">
+          <i class="fa-solid fa-ticket"></i>
+          <span>Tickets</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/new-tickets" class="flex items-center space-x-2 text-white">
+          <i class="fa-solid fa-ticket-simple"></i>
+          <span>New-Tickets</span>
+        </a>
+      </li>
+    </ul>
+    
+    <!-- Sidebar Footer -->
+    <footer class="bg-purple-800 text-white p-4">
+      <div class="flex flex-col items-center">
+        <h4 class="text-sm font-semibold">{{userData.emailId}}</h4>
+        <h3 class="text-sm font-medium">{{userData.role}}</h3>
+        <button 
+          class="mt-3 px-4 py-0.5 bg-red-600 text-white rounded-md hover:bg-red-700 transition duration-300"
+          (click)="logOutBtn()">Log Out</button>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Dynamic Content (80% of the screen) -->
+  <div class="content w-4/5 p-5 overflow-auto">
+    <router-outlet></router-outlet>
+  </div>
+</div>

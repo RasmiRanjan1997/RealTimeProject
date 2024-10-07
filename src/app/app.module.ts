@@ -12,6 +12,8 @@ import { NewTicketsComponent } from './pages/new-tickets/new-tickets.component';
 import { DepartmentComponent } from './pages/department/department.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component'
 import { ReactiveFormsModule } from '@angular/forms';
+import { NaPipe } from './shared/pipes/na.pipe';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     TicketsComponent,
     NewTicketsComponent,
     DepartmentComponent,
-    DashboardComponent
+    DashboardComponent,
+    NaPipe,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

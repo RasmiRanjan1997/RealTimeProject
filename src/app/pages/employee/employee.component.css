@@ -1,0 +1,39 @@
+.main-section {
+    @apply drop-shadow-lg shadow-lg rounded-lg overflow-hidden;
+  }
+  .heading {
+    @apply bg-green-500 px-3 p-1 text-white;
+  }
+  .card-div {
+    @apply border border-black drop-shadow-lg shadow-lg rounded-lg overflow-hidden w-full;
+  }
+  .card-header {
+    @apply flex flex-row gap-2 bg-purple-500 px-3 p-1 items-center;
+  }
+  .card-body {
+    @apply px-3 flex flex-row justify-between p-5;
+  }
+  .label-heading {
+    @apply text-gray-700;
+  }
+  .emp-input {
+    @apply border border-gray-500 py-0.5 px-2 rounded-md outline-none;
+  }
+  .main-input-div {
+    @apply flex flex-row gap-4;
+  }
+  .reset-btn {
+    @apply bg-slate-800 px-4 py-0.5 text-white rounded-md;
+  }
+  .save-btn {
+    @apply bg-green-800 px-4 py-0.5 text-white rounded-md;
+  }
+  .cart-footer{
+    @apply flex flex-row justify-center gap-10 
+  }
+  .edit-btn{
+    @apply bg-blue-600 px-3 py-0.5 rounded-md text-white
+  }
+  .delete-btn{
+    @apply bg-red-600 px-3 py-0.5 rounded-md text-white
+  }

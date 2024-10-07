@@ -1,1 +1,121 @@
-<p>employee works!</p>
+<section>
+    <!-- Card Section (70%) -->
+     <div>
+        <button class="save-btn !text-right" (click)="openEmpFrm()">Add Employee</button>
+     </div>
+    <div class="main-section w-7/10 mt-4">
+      <h2 class="heading">Employee List</h2>
+      <!-- Looping through employee list and creating cards dynamically -->
+      <div class="grid grid-cols-3 gap-2">
+        <div *ngFor="let data of employeelist" class="p-2">
+          <div class="card-div bg-white shadow-md rounded-lg overflow-hidden" style="width: 280px; height: 260px;">
+            <div class="card-header bg-blue-500 p-4 flex items-center gap-3">
+              <i class="fa-solid fa-user text-white text-3xl"></i>
+              <h2 class="text-white text-lg">{{ data.employeeName }}</h2>
+            </div>
+            <div class="card-body p-4">
+              <div class="flex flex-col gap-3">
+                <div class="flex flex-row items-center gap-2">
+                  <i class="fa-solid fa-phone"></i>
+                  <p>{{ data.contactNo }}</p>
+                </div>
+                <div class="flex flex-row items-center gap-2">
+                  <i class="fa-solid fa-envelope"></i>
+                  <p>{{ data.emailId }}</p>
+                </div>
+                <div class="flex flex-row items-center gap-2">
+                  <i class="fa-solid fa-user-shield"></i>
+                  <p>{{ data.deptName }}</p>
+                </div>
+                <div class="flex flex-row items-center gap-2">
+                  <i class="fa-solid fa-code"></i>
+                  <p>{{ data.role }}</p>
+                </div>
+              </div>
+            </div>
+            <div class="cart-footer">
+              <button class="edit-btn" (click)="editEmp(data)">Edit</button>
+              <button class="delete-btn" (click)="deleteEmp(data.employeeId)">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Form Section (30%) -->
+    
+  </section>
+
+  <div *ngIf="empForm" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+    <div class="emp-form border border-black rounded-md overflow-hidden w-3/10 h-auto bg-white">
+      <div class="relative">
+        <h2 class="bg-green-500 p-1 px-5 text-white">{{updateBtn?'Update Employee' : 'New Employee'}}</h2>
+        <button class="absolute top-1 right-5" (click)="close()">X</button>
+      </div>
+      <form [formGroup]="employeeForm" (ngSubmit)="empFormSubmit()">
+        <div class="p-5 flex flex-col gap-3 flex-grow">
+          <div class="main-input-div">
+            <div class="flex flex-col gap-1 w-full">
+              <label class="label-heading">Name <span class="text-red-500">*</span> </label>
+              <div>
+                <input type="text" placeholder="Enter Name" class="emp-input w-full" formControlName="employeeName"/>
+                <span *ngIf="employeeForm.get('employeeForm')?.invalid && employeeForm.get('employeeForm')?.touched" class="text-sm text-red-500">required name</span>
+              </div>
+            </div>
+            <div class="flex flex-col gap-1 w-full">
+              <label class="label-heading">Contact No <span class="text-red-500">*</span></label>
+              <div>
+                <input type="text" placeholder="Enter Contact No" class="emp-input w-full" formControlName="contactNo"/>
+                <span *ngIf="employeeForm.get('contactNo')?.invalid && employeeForm.get('contactNo')?.touched" class="text-sm text-red-500">enter mob number</span>
+              </div>
+            </div>
+          </div>
+          <div class="main-input-div !gap-5">
+            <div class="flex flex-col gap-1">
+              <label class="label-heading">Email-Id <span class="text-red-500">*</span></label>
+              <div class="flex flex-col gap-0">
+                <input type="text" placeholder="Enter Email-Id" class="emp-input w-[255px]" formControlName="emailId"/>
+                <span *ngIf="employeeForm.get('emailId')?.invalid && employeeForm.get('emailId')?.touched" class="text-sm text-red-500">enter emilId</span>
+              </div>
+            </div>
+            <div class="flex flex-col py-6">
+              <div class="flex flex-row gap-4">
+                <div><input type="radio" name="gender" formControlName="gender" value="Male"> Male </div>
+                <div><input type="radio" name="gender" formControlName="gender" value="Female"/> Female</div>
+              </div>
+            </div>
+          </div>
+          <div class="main-input-div">
+            <div class="flex flex-col gap-1 w-full">
+              <label class="label-heading">Password <span class="text-red-500">*</span></label>
+              <div>
+                <input type="password" placeholder="Enter Password" class="emp-input w-full" formControlName="password"/>
+                <span *ngIf="employeeForm.get('password')?.invalid && employeeForm.get('password')?.touched" class="text-sm text-red-500">enter password</span>
+              </div>
+            </div>
+            <div class="flex flex-col gap-1 w-full">
+              <label class="label-heading">Select Department</label>
+              <select class="emp-input w-full" formControlName="deptId">
+                <option *ngFor="let dept of deptList$ | async" [value]="dept.deptId">{{ dept.deptName }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="main-input-div">
+            <div class="flex flex-col gap-1 w-full">
+              <label class="label-heading">Role</label>
+              <select class="emp-input w-full" formControlName="role">
+                <option value="admin">Admin</option>
+                <option value="Admin Department Employee">Admin Department Employee</option>
+                <option value="Department Head">Department Head</option>
+                <option value="Super Admin">Super Admin</option>
+              </select>
+            </div>
+          </div>
+          <div class="flex flex-row gap-5 justify-center mt-5">
+            <button class="reset-btn" type="button" (click)="close()">Reset</button>
+            <button class="save-btn" [disabled]="employeeForm.invalid" [ngClass]="{'bg-green-400 cursor-not-allowed': employeeForm.invalid, 'bg-green-800 cursor-pointer': employeeForm.valid}">{{updateBtn?'Update' : 'Save'}}</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  

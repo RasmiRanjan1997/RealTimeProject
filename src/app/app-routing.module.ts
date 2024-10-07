@@ -7,6 +7,9 @@ import { EmployeeComponent } from './pages/employee/employee.component';
 import { Department } from './Core/models/API.model';
 import { TicketsComponent } from './pages/tickets/tickets.component';
 import { NewTicketsComponent } from './pages/new-tickets/new-tickets.component';
+import { DepartmentComponent } from './pages/department/department.component';
+import { authGuard } from './Core/guard/auth.guard';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {
@@ -16,33 +19,43 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
   },
   {
     path: '',
     component: LayoutComponent,
+    canActivate: [authGuard],
     children: [
       {
         path: 'dashboard',
-        component: DashboardComponent
+        component: DashboardComponent,
+        
       },
       {
         path: 'employee',
-        component: EmployeeComponent
+        component: EmployeeComponent,
+        
       },
       {
         path: 'department',
-        component: Department
+        component: DepartmentComponent,
+        
       },
       {
         path: 'ticket',
-        component: TicketsComponent
+        component: TicketsComponent,
+        
       },
       {
         path: 'new-tickets',
-        component: NewTicketsComponent
+        component: NewTicketsComponent,
+        
       }
     ]
+  },
+  {
+    path: "**",
+    component: PageNotFoundComponent
   }
 ];
 

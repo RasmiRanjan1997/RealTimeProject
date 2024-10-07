@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { Constant } from '../constant/Constants';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { APIResponse, Department } from '../models/API.model';
 
 @Injectable({
@@ -19,13 +19,19 @@ export class DepartmentService implements OnInit{
     return this._http.get<APIResponse>(environment.API_URL + Constant.API_END_POINTS.GET_DEPARTMENTS);
   }
 
-  createDepartment(data: Department) : Observable<APIResponse>{
+  getDeptList() : Observable<Department[]>{
+    return this._http.get<Department[]>(environment.API_URL + Constant.API_END_POINTS.GET_DEPARTMENTS).pipe(map((res: any) =>{
+      return res.data;
+    }));
+  }
+
+  createDepartment(data: any) : Observable<APIResponse>{
     return this._http.post<APIResponse>(environment.API_URL + Constant.API_END_POINTS.CRAETE_DEPARTMENTS, data);
   }
 
 
-  updateDepartment(data: Department) : Observable<APIResponse>{
-    return this._http.put<APIResponse>(environment.API_URL + Constant.API_END_POINTS.UPDATE_DEPARTMENTS, data);
+  updateDepartment(id: any,data: Department) : Observable<APIResponse>{
+    return this._http.put<APIResponse>(environment.API_URL + Constant.API_END_POINTS.UPDATE_DEPARTMENTS + "/" + id, data);
   }
 
   deleteDepartment(id: number) : Observable<APIResponse>{
