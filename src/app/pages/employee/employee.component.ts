@@ -12,7 +12,7 @@ import { EmployeeService } from 'src/app/Core/services/employee.service';
 })
 export class EmployeeComponent implements OnInit{
 
-  deptList$: Observable<Department[]> | undefined;
+  deptList$: Observable<Department[]> | undefined; // used for the async pipe;
   employeelist: EmployeeModel[] = [];
   empForm: boolean = false;
 

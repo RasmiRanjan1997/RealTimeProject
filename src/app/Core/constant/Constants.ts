@@ -10,7 +10,11 @@ export const Constant = {
         GET_EMPLOYEES: "GetEmployees",
         CREATE_EMPLOYEE: "CreateEmployee",
         UPDATE_EMPLOYEE: "UpdateEmployee",
-        DELETE_EMPLOYEE: "DeleteEmployee?id="
+        DELETE_EMPLOYEE: "DeleteEmployee?id=",
+
+        // for the new ticket;
+
+        CREATE_NEW_TICKET : "CreateNewTicket",
         
     },
 

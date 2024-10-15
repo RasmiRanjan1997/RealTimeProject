@@ -14,7 +14,7 @@ import { Constant } from 'src/app/Core/constant/Constants';
 })
 export class DepartmentComponent implements OnInit{
   allDepartmentData: any[] = [];
-  employee$: Observable<EmployeeModel[]> | undefined;
+  employee$: Observable<EmployeeModel[]> | undefined; // used for th async pipe;
   departmentForm!: FormGroup;
   initialDepId:any;
   public Constant = Constant

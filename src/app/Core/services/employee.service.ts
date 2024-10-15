@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { APIResponse, EmployeeModel, LoginModel } from '../models/API.model';
+import { APIResponse, EmployeeModel, LoginModel, NewTicketObject } from '../models/API.model';
 import { map, Observable, retry } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Constant } from '../constant/Constants';
@@ -37,6 +37,10 @@ export class EmployeeService {
 
   deleteEmployee(empId: any): Observable<APIResponse>{
     return this._http.delete<APIResponse>(environment.API_URL + Constant.API_END_POINTS.DELETE_EMPLOYEE + empId)
+  };
+
+  createNewTickets(data: NewTicketObject): Observable<APIResponse>{
+    return this._http.post<APIResponse>(environment.API_URL + Constant.API_END_POINTS.CREATE_NEW_TICKET, data)
   }
   
 }
